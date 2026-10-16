@@ -41,4 +41,11 @@ pnpm nx graph
 pnpm nx run-many -t lint test build   # everything
 pnpm nx affected -t lint test build   # only what changed
 pnpm nx show projects                 # list projects
+pnpm format                           # Prettier on everything
 ```
+
+## Conventions
+
+- **Commits:** [Conventional Commits](https://www.conventionalcommits.org), e.g. `feat(api): add health endpoint (SMP-10)`. Enforced by commitlint in the `commit-msg` hook.
+- **Pre-commit:** lint-staged runs Prettier and `nx affected -t lint --fix` on staged files.
+- **Module boundaries:** every project needs a `scope:*` and a `type:*` tag; see [docs/module-boundaries.md](docs/module-boundaries.md).
