@@ -5,7 +5,7 @@ import prettier from 'eslint-config-prettier/flat';
  * Root ESLint config. Each project's eslint.config.mjs extends this one
  * (Angular apps add `nx.configs['flat/angular']` on top).
  *
- * Module boundaries: every project.json / package.json "nx.tags" must carry
+ * Module boundaries: every project.json "tags" array must carry
  * one `scope:*` and one `type:*` tag. See docs/module-boundaries.md.
  */
 export default [

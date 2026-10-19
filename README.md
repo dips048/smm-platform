@@ -5,7 +5,7 @@ The Shri Mangal Mandir donation platform: **kiosk**, **admin dashboard** and **d
 The old repos (`shri-mangal-mandir-web`, `shri-mangal-mandir-kiosk`, `types-shri-mangal-mandir`) are reference only.
 
 - **Plan & tasks:** [Notion: Shri Mangal Mandir Platform — Build Plan](https://app.notion.com/p/3fbbd0b22ec08146878ed828023a865f)
-- **Stack:** Nx + pnpm · Node 22 + Fastify 5 + zod · Drizzle + DigitalOcean Managed Postgres · Better Auth + Twilio Verify · pg-boss · Stripe · Angular 21 (+ Capacitor for the iPad kiosk)
+- **Stack:** Nx + pnpm · Node 24 + Fastify 5 + zod · Drizzle + DigitalOcean Managed Postgres · Better Auth + Twilio Verify · pg-boss · Stripe · Angular 22 (+ Capacitor for the iPad kiosk)
 
 ## Layout
 
@@ -27,7 +27,7 @@ docs/             ADRs, glossary, runbooks
 
 ## Getting started
 
-Requirements: Node 22 (see `.nvmrc`) and pnpm via corepack.
+Requirements: Node 24 LTS (see `.nvmrc`) and pnpm via corepack.
 
 ```sh
 corepack enable
@@ -49,3 +49,5 @@ pnpm format                           # Prettier on everything
 - **Commits:** [Conventional Commits](https://www.conventionalcommits.org), e.g. `feat(api): add health endpoint (SMP-10)`. Enforced by commitlint in the `commit-msg` hook.
 - **Pre-commit:** lint-staged runs Prettier and `nx affected -t lint --fix` on staged files.
 - **Module boundaries:** every project needs a `scope:*` and a `type:*` tag; see [docs/module-boundaries.md](docs/module-boundaries.md).
+- **Imports:** libs are imported as `@smm/<lib>` (path aliases in `tsconfig.base.json`, added by the Nx lib generators). Libs are not buildable; apps compile or bundle them.
+- **Dev ports:** api 3000, admin-web 4200, donor-portal 4201, kiosk 4202 (`pnpm nx serve <app>`).

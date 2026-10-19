@@ -1,6 +1,6 @@
 # Module boundaries
 
-`@nx/enforce-module-boundaries` (root `eslint.config.mjs`) stops code from importing across lines it shouldn't. Every project carries exactly one `scope:*` and one `type:*` tag in `nx.tags` (in its `package.json` or `project.json`).
+`@nx/enforce-module-boundaries` (root `eslint.config.mjs`) stops code from importing across lines it shouldn't. Every project carries exactly one `scope:*` and one `type:*` tag in the `tags` array of its `project.json`.
 
 ## Tags per project
 

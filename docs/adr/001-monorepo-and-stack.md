@@ -18,13 +18,13 @@ We will build everything in **one Nx monorepo managed with pnpm** (`smm-platform
 
 | Area            | Choice                                                                                           |
 | --------------- | ------------------------------------------------------------------------------------------------ |
-| Repo            | Nx + pnpm workspaces; Node 22 LTS pinned (`.nvmrc`, `engines`)                                   |
-| API             | Node 22 + TypeScript + **Fastify 5**, **zod** validation, OpenAPI generated from the schemas     |
+| Repo            | Nx + pnpm; libs shared via tsconfig `paths` (`@smm/*`); Node 24 LTS pinned (`.nvmrc`, `engines`) |
+| API             | Node 24 + TypeScript + **Fastify 5**, **zod** validation, OpenAPI generated from the schemas     |
 | Database access | **Drizzle ORM**, SQL migrations committed to git                                                 |
 | Background jobs | **pg-boss** (queue stored in Postgres), run as a separate `worker` app                           |
 | Payments        | **Stripe Terminal** (kiosk + admin), **Stripe Payment Element** (online)                         |
 | Receipts        | **pdfmake** PDFs; transactional email provider (Postmark recommended)                            |
-| Front ends      | **Angular 21**: standalone components, signals, zoneless. **Capacitor** wraps the kiosk for iPad |
+| Front ends      | **Angular 22**: standalone components, signals, zoneless. **Capacitor** wraps the kiosk for iPad |
 | Testing         | Vitest, Testcontainers (real Postgres), Playwright e2e                                           |
 | CI              | GitHub Actions with `nx affected`                                                                |
 | Monitoring      | Sentry                                                                                           |
