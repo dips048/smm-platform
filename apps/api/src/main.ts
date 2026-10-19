@@ -1,8 +1,12 @@
 import Fastify from 'fastify';
 import { app } from './app/app';
 
-const host = process.env.HOST ?? 'localhost';
-const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+// API_* names, because Nx loads .env into every task and the Angular dev
+// server would also pick up a plain PORT. PORT stays as a fallback for hosts
+// that inject it (DO App Platform).
+const host = process.env.API_HOST ?? 'localhost';
+const portEnv = process.env.API_PORT ?? process.env.PORT;
+const port = portEnv ? Number(portEnv) : 3000;
 
 // Instantiate Fastify with some config
 const server = Fastify({

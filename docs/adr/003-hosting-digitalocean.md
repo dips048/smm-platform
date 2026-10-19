@@ -12,7 +12,7 @@ We need to host an API, a background worker, three static front ends, a Postgres
 
 We will host on **DigitalOcean**:
 
-- **Database:** **DigitalOcean Managed PostgreSQL**. Daily backups and point-in-time recovery are included, and it is reachable from the apps over DO's private network only (trusted sources).
+- **Database:** **DigitalOcean Managed PostgreSQL 18** (the newest major DO offers; local Docker uses the same major). Daily backups and point-in-time recovery are included, and it is reachable from the apps over DO's private network only (trusted sources).
 - **Compute:** **DigitalOcean App Platform**, defined by an app spec committed at `.do/app.yaml`:
   - `api`: service (Fastify)
   - `worker`: worker (pg-boss jobs: emails, PDFs, reconciliation)
@@ -23,7 +23,7 @@ We will host on **DigitalOcean**:
 
 | Environment | Database                                      | Keys               | Deploys               |
 | ----------- | --------------------------------------------- | ------------------ | --------------------- |
-| local       | Docker Postgres + Mailpit                     | Stripe/Twilio test | `pnpm nx serve`       |
+| local       | Docker Postgres 18 + Mailpit                  | Stripe/Twilio test | `pnpm dev`            |
 | staging     | own small DO Postgres cluster, fake seed data | test mode          | every merge to `main` |
 | production  | own DO Postgres cluster                       | live               | tagged release only   |
 

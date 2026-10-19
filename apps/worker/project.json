@@ -82,7 +82,8 @@
       "dependsOn": ["build"],
       "options": {
         "buildTarget": "worker:build",
-        "runBuildTargetDependencies": false
+        "runBuildTargetDependencies": false,
+        "port": 9230
       },
       "configurations": {
         "development": {
