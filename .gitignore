@@ -48,3 +48,12 @@ Thumbs.db
 .nx/polygraph
 .nx/self-healing
 .nx/migrate-runs
+vitest.config.*.timestamp*
+.angular
+
+__screenshots__/
+
+# local environment (copy .env.example)
+.env
+.env.*
+!.env.example

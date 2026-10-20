@@ -1,0 +1,80 @@
+# Weekly dependency PRs, opened against develop. Commit messages follow
+# Conventional Commits so they pass commitlint when amended locally.
+version: 2
+
+updates:
+  - package-ecosystem: npm # also covers pnpm (pnpm-lock.yaml)
+    directory: /
+    target-branch: develop
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: chore
+      include: scope
+    ignore:
+      # Nx and Angular ship code migrations; upgrade them with
+      # `pnpm nx migrate latest` instead (Angular majors too).
+      - dependency-name: nx
+      - dependency-name: '@nx/*'
+      - dependency-name: '@angular/*'
+        update-types: [version-update:semver-major]
+      - dependency-name: '@angular-devkit/*'
+        update-types: [version-update:semver-major]
+      - dependency-name: '@schematics/angular'
+        update-types: [version-update:semver-major]
+      # Must match the Node major in .nvmrc (24 LTS).
+      - dependency-name: '@types/node'
+        update-types: [version-update:semver-major]
+    groups:
+      angular:
+        patterns:
+          - '@angular/*'
+          - '@angular-devkit/*'
+          - '@schematics/angular'
+          - 'angular-eslint'
+          - '@analogjs/*'
+      vitest:
+        patterns:
+          - 'vitest'
+          - '@vitest/*'
+      lint-format:
+        patterns:
+          - 'eslint'
+          - 'eslint-*'
+          - 'typescript-eslint'
+          - '@typescript-eslint/*'
+          - 'prettier'
+          - '@commitlint/*'
+          - 'lint-staged'
+          - 'husky'
+      minor-and-patch:
+        update-types: [minor, patch]
+
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: develop
+    schedule:
+      interval: weekly
+      day: monday
+    commit-message:
+      prefix: ci
+      include: scope
+    groups:
+      actions:
+        patterns: ['*']
+
+  - package-ecosystem: docker-compose
+    directory: /
+    target-branch: develop
+    schedule:
+      interval: weekly
+      day: monday
+    commit-message:
+      prefix: chore
+      include: scope
+    ignore:
+      # Postgres major must match DigitalOcean Managed PostgreSQL (ADR 003).
+      - dependency-name: postgres
+        update-types: [version-update:semver-major]

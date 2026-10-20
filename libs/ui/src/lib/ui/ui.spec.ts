@@ -1,0 +1,22 @@
+import type { ComponentFixture } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { Ui } from './ui';
+
+describe('Ui', () => {
+  let component: Ui;
+  let fixture: ComponentFixture<Ui>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [Ui],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(Ui);
+    component = fixture.componentInstance;
+    await fixture.whenStable();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

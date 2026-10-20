@@ -1,0 +1,22 @@
+{
+  "name": "ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ui/src",
+  "prefix": "smm",
+  "projectType": "library",
+  "tags": ["scope:web", "type:ui"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "tsc --noEmit -p {projectRoot}/tsconfig.lib.json",
+          "tsc --noEmit -p {projectRoot}/tsconfig.spec.json"
+        ]
+      }
+    }
+  }
+}
