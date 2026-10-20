@@ -93,11 +93,26 @@ pnpm db:tools   # also start pgAdmin (compose profile "tools")
 ## Common commands
 
 ```sh
-pnpm nx run-many -t lint test build   # everything
-pnpm nx affected -t lint test build   # only what changed
-pnpm nx show projects                 # list projects
-pnpm format                           # Prettier on everything
+pnpm nx run-many -t lint typecheck test build   # everything
+pnpm nx affected -t lint typecheck test build   # only what changed (what CI runs)
+pnpm nx show projects                           # list projects
+pnpm format                                     # Prettier on everything
 ```
+
+## CI
+
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs on every pull request and push to `main` and `develop`:
+
+1. `pnpm install --frozen-lockfile` (Node from `.nvmrc`, pnpm from `packageManager`)
+2. `nx format:check` on the changed files
+3. `nx affected -t lint typecheck test build`, against the PR's target branch or the last green commit
+
+A Postgres 18 service container is available to tests through `DATABASE_URL`. [Dependabot](.github/dependabot.yml) opens grouped dependency PRs against `develop` every Monday. Nx and Angular majors are left out, because those go through `pnpm nx migrate latest`.
+
+Set up once in GitHub (repository **Settings**):
+
+- **Code security:** turn on _Secret scanning_ and _Push protection_.
+- **Branches → `main`:** add a branch protection rule (or ruleset). Require a pull request and require the **CI** status check to pass.
 
 ## Conventions
 

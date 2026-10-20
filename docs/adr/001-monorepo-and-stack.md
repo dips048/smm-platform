@@ -26,7 +26,7 @@ We will build everything in **one Nx monorepo managed with pnpm** (`smm-platform
 | Receipts        | **pdfmake** PDFs; transactional email provider (Postmark recommended)                            |
 | Front ends      | **Angular 22**: standalone components, signals, zoneless. **Capacitor** wraps the kiosk for iPad |
 | Testing         | Vitest, Testcontainers (real Postgres), Playwright e2e                                           |
-| CI              | GitHub Actions with `nx affected`                                                                |
+| CI              | GitHub Actions with `nx affected` (format, lint, typecheck, test, build), Dependabot weekly      |
 | Monitoring      | Sentry                                                                                           |
 
 Layout:

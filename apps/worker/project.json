@@ -93,6 +93,15 @@
           "buildTarget": "worker:build:production"
         }
       }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "tsc --noEmit -p {projectRoot}/tsconfig.app.json",
+          "tsc --noEmit -p {projectRoot}/tsconfig.spec.json"
+        ]
+      }
     }
   }
 }
